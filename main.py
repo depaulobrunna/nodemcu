@@ -13,4 +13,5 @@ def main():
         
 if __name__ == '__main__':
     print("main entered")
+    esp.osdebug(0)
     main()
