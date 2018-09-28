@@ -3,13 +3,9 @@ from machine import Pin
 import time
 
 def main():
-    pin = Pin(5, Pin.OUT)
-    for i in range(10):
-        pin.on()
-        time.sleep_ms(500)
-        pin.off()
-        time.sleep_ms(500)
-        print(i)
+    p5 = Pin(5, Pin.IN)    
+    while(True):
+        print(p5.value())
         
 if __name__ == '__main__':
     print("main entered")
