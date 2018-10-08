@@ -1,14 +1,14 @@
 import esp
 import machine
-#from machine import Pin, PWM
+from machine import I2C
 import time
 
 def main():
+    servo = machine.PWM(machine.Pin(5), freq=50)
     while(True):
-        print('main')
-        time.sleep(1)
+        servo.duty(60)
+        time.sleep_ms(500)
+        servo.duty(100)
+        time.sleep_ms(500)
         
 main()
-'''if __name__ == '__main__':
-    print("main entered")
-    main() '''

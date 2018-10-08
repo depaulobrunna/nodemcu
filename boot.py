@@ -5,7 +5,7 @@ import gc
 #import webrepl
 #webrepl.start()
 gc.collect()
-print('boot')
+print('start')
 '''def do_connect():
     import network
     wlan = network.WLAN(network.STA_IF)
