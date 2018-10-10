@@ -1,14 +1,12 @@
 import esp
 import machine
-from machine import I2C
 import time
 
 def main():
-    servo = machine.PWM(machine.Pin(5), freq=50)
+    print('main')
+    i2c = machine.I2C(scl=machine.Pin(14), sda=machine.Pin(2))
     while(True):
-        servo.duty(60)
-        time.sleep_ms(500)
-        servo.duty(100)
-        time.sleep_ms(500)
+        time.sleep(1)
+        print('barramento:', i2c.scan())
         
 main()
