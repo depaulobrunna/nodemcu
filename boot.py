@@ -2,8 +2,8 @@
 import esp
 esp.osdebug(0)
 import gc
-#import webrepl
-#webrepl.start()
+import webrepl
+webrepl.start()
 gc.collect()
 print('start')
 '''def do_connect():
