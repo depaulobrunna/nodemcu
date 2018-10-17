@@ -11,12 +11,15 @@ def main():
         time.sleep(1)
         if(addr[0] == (int)(0x68)):
             print('MPU6050 device found!!!')
+        time.sleep(1)
         reg = 0x6B
         data = (i2c.readfrom_mem(addr[0], reg, 1))
-        print('reg:', reg, 'pwr:',(data))
+        if(data[0] == (int)(0x40)):
+            print('reg:', reg, 'pwr:',(data))
         time.sleep(1)
         reg = 0x75
         data = i2c.readfrom_mem(addr[0], reg, 1)
-        print('reg:', reg,'who am i:', (data))
+        if(data[0] == (int)(0x68)):
+            print('reg:', reg,'who am i:', (data))
         time.sleep(1)
 main()
