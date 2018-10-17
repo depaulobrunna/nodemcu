@@ -7,9 +7,16 @@ def main():
     i2c = machine.I2C(scl=machine.Pin(14), sda=machine.Pin(2))
     while(True):
         addr = i2c.scan()
-        reg = 0x00
-        while(reg < 118):
-            print('reg:', reg, i2c.readfrom_mem(addr[0], reg, 2))
-            time.sleep_ms(500)
-            reg = reg + 1
+        print('i2c device address:', addr[0])
+        time.sleep(1)
+        if(addr[0] == (int)(0x68)):
+            print('MPU6050 device found!!!')
+        reg = 0x6B
+        data = (i2c.readfrom_mem(addr[0], reg, 1))
+        print('reg:', reg, 'pwr:',(data))
+        time.sleep(1)
+        reg = 0x75
+        data = i2c.readfrom_mem(addr[0], reg, 1)
+        print('reg:', reg,'who am i:', (data))
+        time.sleep(1)
 main()
