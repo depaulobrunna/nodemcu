@@ -1,25 +1,25 @@
 import esp
 import machine
+from machine import Pin, PWM
 import time
+
+def pwm_motor(duty):
+    pwm_dc = PWM(Pin(5))
+    pwm_dc.freq(1000)
+    pwm_dc.duty(duty)
+
+def pwm_servo(duty_cycle):
+    pwm_servo = machine.PWM(machine.Pin(0), freq=50)
+    pwm_servo.duty(duty_cycle)
+    time.sleep_ms(500)
 
 def main():
     print('main')
-    i2c = machine.I2C(scl=machine.Pin(14), sda=machine.Pin(2))
+    in3 = Pin(16, Pin.OUT)
+    in4 = Pin(4, Pin.OUT)
     while(True):
-        addr = i2c.scan()
-        print('i2c device address:', addr[0])
-        time.sleep(1)
-        if(addr[0] == (int)(0x68)):
-            print('MPU6050 device found!!!')
-        time.sleep(1)
-        reg = 0x6B
-        data = (i2c.readfrom_mem(addr[0], reg, 1))
-        if(data[0] == (int)(0x40)):
-            print('reg:', reg, 'pwr:',(data))
-        time.sleep(1)
-        reg = 0x75
-        data = i2c.readfrom_mem(addr[0], reg, 1)
-        if(data[0] == (int)(0x68)):
-            print('reg:', reg,'who am i:', (data))
-        time.sleep(1)
+        pwm_motor(700)
+        in3.on()
+        in4.off()
+        
 main()
