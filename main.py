@@ -18,8 +18,10 @@ def main():
     in3 = Pin(16, Pin.OUT)
     in4 = Pin(4, Pin.OUT)
     while(True):
-        pwm_motor(700)
-        in3.on()
-        in4.off()
-        
+        pwm_motor(200)
+        time.sleep(1)
+        pwm_servo(60)
+        time.sleep(1)
+        pwm_servo(100)
+        time.sleep(1)
 main()
