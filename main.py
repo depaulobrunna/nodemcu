@@ -12,6 +12,7 @@ def pwm_servo(duty_cycle):
     pwm_servo = machine.PWM(machine.Pin(0), freq=50)
     pwm_servo.duty(duty_cycle)
     time.sleep_ms(500)
+    #add func para desligar o pino do servo
 
 def main():
     print('main')
