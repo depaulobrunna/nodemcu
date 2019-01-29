@@ -4,6 +4,7 @@ from machine import Pin, PWM
 import time
 
 def pwm_motor(freq, duty):
+    
     pwm_dc = PWM(Pin(5))
     pwm_dc.freq(freq)
     pwm_dc.duty(duty)
@@ -19,14 +20,18 @@ def pwm_servo(duty_cycle):
     
 
 def main():
-    print('main')
+    
+    #print('main')
     in3 = Pin(16, Pin.OUT)
     in4 = Pin(4, Pin.OUT)
-    while(True):
-        pwm_motor(1000, 200)
-        time.sleep(1)
-        pwm_servo(60)
-        time.sleep(1)
-        pwm_servo(100)
-        time.sleep(1)
+    pwm_motor(1000, 250)
+    i = 0
+    while(i < 10):
+        in3.value(0)
+        in4.value(1)
+        time.sleep(2)
+        in3.value(1)
+        in4.value(0)
+        time.sleep(2)
+        i = i+1
 main()
